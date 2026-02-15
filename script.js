@@ -113,7 +113,7 @@ function closeModal() {
     const toggleModal = (show) => elements.modal.style.display = show ? 'flex' : 'none';
 
     document.addEventListener('click', (e) => {
-        if (e.target.id === 'contactBtn' || e.target.innerText.includes('Inquire') || e.target.innerText.includes('Lock In')) {
+        if (e.target.id === 'contactBtn' || e.target.innerText.includes('Inquire') || e.target.innerText.includes('Work') || e.target.innerText.includes('Lock In')) {
             toggleModal(true);
         }
         if (e.target.classList.contains('close-btn')) toggleModal(false);

@@ -425,3 +425,43 @@ section { padding: 80px 0; }
         display: inline-block;
     }
 }
+
+/* --- TESTIMONIALS STYLING --- */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border-bottom: 4px solid var(--primary);
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.stars {
+    color: #f1c40f; /* Gold */
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.client-info {
+    font-size: 0.9rem;
+    color: var(--dark);
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
