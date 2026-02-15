@@ -144,11 +144,16 @@
             <label>Preferred Vehicle / Question</label>
             <textarea placeholder="Tell Richard what you're looking for..." rows="4"></textarea>
             
-            <button type="submit" class="btn btn-primary" style="padding: 18px;">Send Message</button>
-            <p style="font-size: 0.75rem; text-align: center; color: #999; margin-top: 10px;">
-                By submitting, you agree to be contacted regarding your inquiry.
-            </p>
-        </form>
+            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+            </form>
+        </div>
+
+        <div id="successMessage" class="success-content">
+            <div class="success-icon">✓</div>
+            <h3>Message Received!</h3>
+            <p>Thanks, <span id="userNameDisplay">Partner</span>! Richard has been notified and will reach out to you shortly.</p>
+            <button class="btn btn-primary" onclick="closeModal()">Got it</button>
+        </div>
     </div>
 </div>
 

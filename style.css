@@ -307,3 +307,42 @@ section { padding: 80px 0; }
     .hero h1 { font-size: 2.5rem; }
     .calculator-grid { grid-template-columns: 1fr; }
 }
+
+/* --- SUCCESS STATE STYLING --- */
+.success-content {
+    text-align: center;
+    padding: 40px 20px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    animation: scaleIn 0.4s ease-out;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #27ae60;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+}
+
+.success-content h3 {
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.success-content p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
