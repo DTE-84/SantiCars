@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Santiago | Shottenkirk Quincy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="./assets/logo-shottenkirk-quincy-red-min.png" alt="Shottenkirk Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inventory" class="nav-item">Inventory</a></li>
+                <li><a href="#vin-decoder" class="nav-item">VIN Decoder</a></li>
+                <li><a href="#about" class="nav-item">About</a></li>
+                <li><button class="btn btn-primary" id="contactBtn">Contact Richard</button></li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <span class="badge">Shottenkirk Quincy</span>
+                <h1>Find Your Next Journey</h1>
+                <p>Expert guidance from Richard Santiago. Quality cars, transparent pricing.</p>
+                <a href="#inventory" class="btn btn-white">Browse Fleet</a>
+            </div>
+        </section>
+
+        <section id="vin-decoder" class="section-gray">
+            <div class="container">
+                <div class="section-header">
+                    <h2>VIN Specialist Decoder</h2>
+                    <p>Official NHTSA data retrieval for precise vehicle specifications.</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="input-group">
+                        <input type="text" id="vinInput" placeholder="Enter 17-digit VIN...">
+                        <button id="decodeBtn" class="btn btn-primary">Decode Now</button>
+                    </div>
+                    <div id="vinResult" class="result-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment-calculator" class="section-gray">
+    <div class="container">
+        <div class="section-header">
+            <h2>Payment Estimator</h2>
+            <p>Calculate your monthly budget with Richard's competitive financing rates.</p>
+        </div>
+
+        <div class="tool-card calculator-grid">
+            <div class="calc-inputs">
+                <div class="form-group">
+                    <label>Vehicle Price ($)</label>
+                    <input type="number" id="calcPrice" value="35000" step="500">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment ($)</label>
+                    <input type="number" id="calcDown" value="5000" step="100">
+                </div>
+                <div class="form-group">
+                    <label>Interest Rate (%)</label>
+                    <input type="number" id="calcRate" value="4.9" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label>Loan Term (Months)</label>
+                    <select id="calcTerm">
+                        <option value="36">36 Months</option>
+                        <option value="48">48 Months</option>
+                        <option value="60" selected>60 Months</option>
+                        <option value="72">72 Months</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="calc-result">
+                <h4>Estimated Monthly Payment</h4>
+                <div class="payment-amount" id="monthlyPayment">$0.00</div>
+                <p class="small">Total Interest: <span id="totalInterest">$0.00</span></p>
+                <button class="btn btn-primary" style="width:100%; margin-top: 20px;" onclick="window.location.href='#contactModal'">Lock In This Rate</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="inventory" class="container">
+            <div class="section-header">
+                <h2>Our Fleet</h2>
+                <div class="filter-bar">
+                    <input type="text" id="brandSearch" placeholder="Search Make (e.g. Ford)">
+                    
+                    <div class="range-group">
+                        <label>Max Weekly: <span id="priceValue">$1000</span></label>
+                        <input type="range" id="priceRange" min="150" max="1000" value="1000">
+                    </div>
+
+                    <select id="sortOrder">
+                        <option value="default">Featured</option>
+                        <option value="low">Price: Low-High</option>
+                        <option value="high">Price: High-Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="inventoryGrid" class="car-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 Richard Santiago - Shottenkirk Quincy. All Rights Reserved.</p>
+        </div>
+    </footer>
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-header">
+            <h3>Priority Inquiry</h3>
+            <p>Direct to Richard Santiago's Desk</p>
+        </div>
+        <form id="contactForm">
+            <label>Name</label>
+            <input type="text" placeholder="e.g. John Doe" required>
+            
+            <label>Email Address</label>
+            <input type="email" placeholder="john@example.com" required>
+            
+            <label>Preferred Vehicle / Question</label>
+            <textarea placeholder="Tell Richard what you're looking for..." rows="4"></textarea>
+            
+            <button type="submit" class="btn btn-primary" style="padding: 18px;">Send Message</button>
+            <p style="font-size: 0.75rem; text-align: center; color: #999; margin-top: 10px;">
+                By submitting, you agree to be contacted regarding your inquiry.
+            </p>
+        </form>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
