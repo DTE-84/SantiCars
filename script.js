@@ -27,6 +27,46 @@ function subscribePriceDrop(carName) {
 document.addEventListener('DOMContentLoaded', () => {
     let carFleet = [];
 
+    // FORM SUBMISSION LOGIC
+const contactForm = document.getElementById('contactForm');
+const formContainer = document.getElementById('formContainer');
+const successMessage = document.getElementById('successMessage');
+const userNameDisplay = document.getElementById('userNameDisplay');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent page reload
+
+        // 1. Get the user's name to personalize the message
+        const name = document.getElementById('formName').value;
+        userNameDisplay.textContent = name.split(' ')[0]; // Just the first name
+
+        // 2. Hide form, show success
+        formContainer.style.display = 'none';
+        successMessage.style.display = 'flex';
+
+        // 3. Optional: Reset form for next time
+        contactForm.reset();
+        
+        // Auto-close after 5 seconds (optional)
+        setTimeout(() => {
+            if (elements.modal.style.display === 'flex') {
+                closeModal();
+            }
+        }, 5000);
+    });
+}
+
+// Helper to reset modal view when closed
+function closeModal() {
+    elements.modal.style.display = 'none';
+    // Reset view so form shows next time it's opened
+    setTimeout(() => {
+        formContainer.style.display = 'block';
+        successMessage.style.display = 'none';
+    }, 500);
+}
+
     const elements = {
         grid: document.getElementById('inventoryGrid'),
         brandInput: document.getElementById('brandSearch'),
