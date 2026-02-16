@@ -1,9 +1,8 @@
-/* 1. VARIABLES & RESET */
 :root {
-    --primary: #AE0315;    /* Santi Red */
-    --silver: #C0C0C0;     /* Polished Silver */
-    --black: #0a0a0a;      /* Deep Black */
-    --whitesmoke: #f5f5f5; /* Off-white */
+    --primary: #AE0315;
+    --silver: #C0C0C0;
+    --black: #0a0a0a;
+    --whitesmoke: #f5f5f5;
     --text: #333;
     --text-light: #f5f5f5;
     --shadow: 0 15px 35px rgba(0,0,0,0.12);
@@ -30,10 +29,9 @@ h1, h2, h3, h4, .logo {
 main { min-height: 80vh; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* 2. BUTTONS & UI COMPONENTS */
 .btn {
     padding: 14px 32px;
-    border-radius: 4px; /* More angular/mechanical feel */
+    border-radius: 4px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
@@ -88,7 +86,6 @@ main { min-height: 80vh; }
     border-left: 4px solid var(--primary);
 }
 
-/* 3. HEADER & NAVIGATION */
 .main-header {
     background: var(--black);
     padding: 20px 0;
@@ -120,9 +117,8 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 
 .nav-item:hover { color: var(--primary); }
 
-/* 4. HAMBURGER (The Icon) */
 .hamburger {
-    display: none; /* Hidden on Desktop */
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -143,16 +139,14 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     transition: var(--transition);
 }
 
-/* Hamburger Animation to 'X' */
 .hamburger.is-active span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
 .hamburger.is-active span:nth-child(2) { opacity: 0; }
 .hamburger.is-active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
 
-/* 3. INPUTS & FORM ELEMENTS */
 .tool-card {
     background: white;
     padding: 45px;
-    border-radius: 4px; /* Matches the angular theme */
+    border-radius: 4px;
     box-shadow: 0 30px 60px rgba(0,0,0,0.08);
     border: 1px solid #e0e0e0;
     position: relative;
@@ -226,8 +220,6 @@ select:focus {
     box-shadow: 0 0 0 4px rgba(174, 3, 21, 0.15);
 }
 
-/* Note: Styling native <option> hover/selection is limited across browsers, 
-   but we can style the select focus and hover states for consistency */
 select:hover {
     border-color: var(--primary);
 }
@@ -252,7 +244,6 @@ select:hover {
     white-space: nowrap;
 }
 
-/* 5. SECTIONS & HERO */
 section { padding: 100px 0; }
 .section-gray { background: #eef2f5; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
 .section-white { background: var(--whitesmoke); }
@@ -291,7 +282,6 @@ section { padding: 100px 0; }
     color: var(--black);
 }
 
-/* 6. CAR CARDS & CALCULATOR */
 .section-header {
     margin-bottom: 50px;
 }
@@ -341,7 +331,7 @@ section { padding: 100px 0; }
 
 .card {
     background: white;
-    border-radius: 0; /* Boxy, architectural feel */
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     transition: var(--transition);
@@ -410,7 +400,6 @@ section { padding: 100px 0; }
 .btn-alert { color: #4A4A4A; border-color: #4A4A4A; }
 .btn-alert:hover { background: #4A4A4A; color: white; }
 
-/* CALCULATOR */
 .calculator-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -433,12 +422,11 @@ section { padding: 100px 0; }
     color: var(--primary);
 }
 
-/* --- ENHANCED PROFESSIONAL MODAL --- */
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(18, 18, 18, 0.9); /* Darker backdrop for focus */
+    background: rgba(18, 18, 18, 0.9);
     backdrop-filter: blur(10px);
     z-index: 9999;
     align-items: center;
@@ -452,14 +440,13 @@ section { padding: 100px 0; }
     width: 100%;
     max-width: 500px;
     border-radius: 12px;
-    overflow: hidden; /* Clips the header corners */
+    overflow: hidden;
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255,255,255,0.1);
     animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Modal Header Section */
 .modal-header {
     background: var(--dark);
     color: white;
@@ -480,7 +467,6 @@ section { padding: 100px 0; }
     opacity: 0.8;
 }
 
-/* Form Styling */
 #contactForm {
     padding: 30px;
     display: flex;
@@ -513,7 +499,6 @@ section { padding: 100px 0; }
     color: var(--primary);
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -556,7 +541,6 @@ section { padding: 100px 0; }
     transform: translateY(-5px);
 }
 
-/* --- CALL BUTTONS & FAB --- */
 .nav-call-btn {
     font-size: 0.8rem;
     padding: 10px 20px;
@@ -591,8 +575,8 @@ section { padding: 100px 0; }
 }
 
 @media (max-width: 768px) {
-    .nav-call-btn { display: none; } /* Hide in mobile menu to save space */
-    .fab-call span { display: none; } /* Show only icon on small mobile */
+    .nav-call-btn { display: none; }
+    .fab-call span { display: none; }
     .fab-call { 
         padding: 15px; 
         bottom: 20px; 
@@ -601,7 +585,6 @@ section { padding: 100px 0; }
     }
 }
 
-/* 8. MOBILE RESPONSIVENESS (The Fix) */
 @media (max-width: 768px) {
     .hamburger { display: flex; }
 
@@ -624,11 +607,10 @@ section { padding: 100px 0; }
     .calculator-grid { grid-template-columns: 1fr; }
 }
 
-/* --- SUCCESS STATE STYLING --- */
 .success-content {
     text-align: center;
     padding: 40px 20px;
-    display: none; /* Hidden by default */
+    display: none;
     flex-direction: column;
     align-items: center;
     animation: scaleIn 0.4s ease-out;
@@ -663,7 +645,6 @@ section { padding: 100px 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* --- ABOUT SECTION STYLING --- */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -740,7 +721,6 @@ section { padding: 100px 0; }
     color: var(--black);
 }
 
-/* Mobile Adjustments */
 @media (max-width: 992px) {
     .about-grid {
         grid-template-columns: 1fr;
@@ -758,7 +738,6 @@ section { padding: 100px 0; }
     }
 }
 
-/* --- TESTIMONIALS STYLING --- */
 .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -779,7 +758,7 @@ section { padding: 100px 0; }
 }
 
 .stars {
-    color: #f1c40f; /* Gold */
+    color: #f1c40f;
     font-size: 1.2rem;
     margin-bottom: 15px;
 }
@@ -798,7 +777,6 @@ section { padding: 100px 0; }
     padding-top: 15px;
 }
 
-/* --- VIN DECODER STYLING --- */
 .result-box {
     margin-top: 20px;
     min-height: 50px;

@@ -1,8 +1,3 @@
-/**
- * RICHARD SANTIAGO - SHOTTENKIRK MASTER ENGINE
- */
-
-// 1. GLOBAL UTILITIES (Buttons in car cards)
 async function shareVehicle(name, price) {
   const shareData = {
     title: `Check out this ${name}`,
@@ -17,7 +12,6 @@ async function shareVehicle(name, price) {
       alert("Deal details copied to clipboard!");
     }
   } catch (err) {
-    console.error("Error sharing:", err);
   }
 }
 
@@ -50,14 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     successCloseBtn: document.getElementById("successCloseBtn"),
   };
 
-  /**
-   * UI: MODAL & NAV
-   */
   const toggleModal = (show) => {
     if (!elements.modal) return;
     elements.modal.style.display = show ? "flex" : "none";
     if (!show) {
-      // Reset view when closing
       setTimeout(() => {
         if (elements.formContainer) elements.formContainer.style.display = "block";
         if (elements.successMessage) elements.successMessage.style.display = "none";
@@ -65,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Global-ish closeModal for internal use
   const closeModal = () => toggleModal(false);
 
   document.addEventListener("click", (e) => {
@@ -74,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       target.id === "contactBtn" ||
       target.id === "lockRateBtn" ||
       target.id === "workWithRichardBtn" ||
-      target.classList.contains("inquire-btn") || // Added for dynamic buttons
+      target.classList.contains("inquire-btn") ||
       target.innerText.includes("Inquire") ||
       target.innerText.includes("Work With Richard") ||
       target.innerText.includes("Lock In This Rate")
@@ -84,13 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (target.classList.contains("close-btn") || target.id === "successCloseBtn") {
       closeModal();
     }
-    // Close modal if clicking outside content
     if (target === elements.modal) {
       closeModal();
     }
   });
 
-  // FORM SUBMISSION LOGIC
   if (elements.contactForm) {
     elements.contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -122,9 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  /**
-   * FEATURE: VIN DECODER
-   */
   if (elements.decodeBtn) {
     elements.decodeBtn.onclick = async () => {
       const vin = elements.vinInput.value.trim();
@@ -154,12 +138,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  /**
-   * INVENTORY: API & RENDERING
-   */
   async function updateFleet() {
     const brand = elements.brandInput.value || "Ford";
-    if (elements.grid) elements.grid.innerHTML = '<div class="loading">Searching Santi\'s Vault...</div>';
+    if (elements.grid) elements.grid.innerHTML = '<div class="loading">Searching...</div>';
     
     try {
       const res = await fetch(
@@ -179,7 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }));
       renderUI();
     } catch (e) {
-      console.error("API Error", e);
       if (elements.grid) elements.grid.innerHTML = '<div class="error">Could not load inventory. Please try again.</div>';
     }
   }
@@ -221,9 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
   }
 
-  /**
-   * FINANCE: LOAN CALCULATOR
-   */
   function calculateLoan() {
     const price = parseFloat(document.getElementById("calcPrice")?.value) || 0;
     const down = parseFloat(document.getElementById("calcDown")?.value) || 0;
@@ -242,7 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
       : "$0.00";
   }
 
-  // Event Listeners
   ["calcPrice", "calcDown", "calcRate", "calcTerm"].forEach((id) => {
     document.getElementById(id)?.addEventListener("input", calculateLoan);
   });
