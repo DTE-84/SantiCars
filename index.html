@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richard "Santi" Santiago | Shottenkirk Quincy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -175,18 +176,24 @@
             <div class="section-header">
                 <h2>Our Fleet</h2>
                 <div class="filter-bar">
-                    <input type="text" id="brandSearch" placeholder="Search Make (e.g. Ford)">
+                    <div class="form-group">
+                        <label for="brandSearch">Search Make</label>
+                        <input type="text" id="brandSearch" placeholder="e.g. Ford, Toyota...">
+                    </div>
                     
                     <div class="range-group">
                         <label>Max Weekly: <span id="priceValue">$1000</span></label>
                         <input type="range" id="priceRange" min="150" max="1000" value="1000">
                     </div>
 
-                    <select id="sortOrder">
-                        <option value="default">Featured</option>
-                        <option value="low">Price: Low-High</option>
-                        <option value="high">Price: High-Low</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="sortOrder">Sort By</label>
+                        <select id="sortOrder">
+                            <option value="default">Featured</option>
+                            <option value="low">Price: Low-High</option>
+                            <option value="high">Price: High-Low</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -197,6 +204,10 @@
 
     <footer class="main-footer">
         <div class="container">
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/richard.santiago.543" target="_blank" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/santi_43r" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            </div>
             <p>&copy; 2026 Richard Santiago - Shottenkirk Quincy. All Rights Reserved.</p>
         </div>
     </footer>
