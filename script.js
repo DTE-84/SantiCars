@@ -31,46 +31,6 @@ function subscribePriceDrop(carName) {
 document.addEventListener("DOMContentLoaded", () => {
   let carFleet = [];
 
-  // FORM SUBMISSION LOGIC
-  const contactForm = document.getElementById("contactForm");
-  const formContainer = document.getElementById("formContainer");
-  const successMessage = document.getElementById("successMessage");
-  const userNameDisplay = document.getElementById("userNameDisplay");
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault(); // Prevent page reload
-
-      // 1. Get the user's name to personalize the message
-      const name = document.getElementById("formName").value;
-      userNameDisplay.textContent = name.split(" ")[0]; // Just the first name
-
-      // 2. Hide form, show success
-      formContainer.style.display = "none";
-      successMessage.style.display = "flex";
-
-      // 3. Optional: Reset form for next time
-      contactForm.reset();
-
-      // Auto-close after 5 seconds (optional)
-      setTimeout(() => {
-        if (elements.modal.style.display === "flex") {
-          closeModal();
-        }
-      }, 5000);
-    });
-  }
-
-  // Helper to reset modal view when closed
-  function closeModal() {
-    elements.modal.style.display = "none";
-    // Reset view so form shows next time it's opened
-    setTimeout(() => {
-      formContainer.style.display = "block";
-      successMessage.style.display = "none";
-    }, 500);
-  }
-
   const elements = {
     grid: document.getElementById("inventoryGrid"),
     brandInput: document.getElementById("brandSearch"),
@@ -83,7 +43,84 @@ document.addEventListener("DOMContentLoaded", () => {
     vinInput: document.getElementById("vinInput"),
     decodeBtn: document.getElementById("decodeBtn"),
     vinResult: document.getElementById("vinResult"),
+    contactForm: document.getElementById("contactForm"),
+    formContainer: document.getElementById("formContainer"),
+    successMessage: document.getElementById("successMessage"),
+    userNameDisplay: document.getElementById("userNameDisplay"),
+    successCloseBtn: document.getElementById("successCloseBtn"),
   };
+
+  /**
+   * UI: MODAL & NAV
+   */
+  const toggleModal = (show) => {
+    if (!elements.modal) return;
+    elements.modal.style.display = show ? "flex" : "none";
+    if (!show) {
+      // Reset view when closing
+      setTimeout(() => {
+        if (elements.formContainer) elements.formContainer.style.display = "block";
+        if (elements.successMessage) elements.successMessage.style.display = "none";
+      }, 500);
+    }
+  };
+
+  // Global-ish closeModal for internal use
+  const closeModal = () => toggleModal(false);
+
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (
+      target.id === "contactBtn" ||
+      target.id === "lockRateBtn" ||
+      target.id === "workWithRichardBtn" ||
+      target.classList.contains("inquire-btn") || // Added for dynamic buttons
+      target.innerText.includes("Inquire") ||
+      target.innerText.includes("Work With Richard") ||
+      target.innerText.includes("Lock In This Rate")
+    ) {
+      toggleModal(true);
+    }
+    if (target.classList.contains("close-btn") || target.id === "successCloseBtn") {
+      closeModal();
+    }
+    // Close modal if clicking outside content
+    if (target === elements.modal) {
+      closeModal();
+    }
+  });
+
+  // FORM SUBMISSION LOGIC
+  if (elements.contactForm) {
+    elements.contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById("formName");
+      const name = nameInput ? nameInput.value : "Partner";
+      if (elements.userNameDisplay) {
+        elements.userNameDisplay.textContent = name.split(" ")[0];
+      }
+
+      if (elements.formContainer) elements.formContainer.style.display = "none";
+      if (elements.successMessage) elements.successMessage.style.display = "flex";
+
+      elements.contactForm.reset();
+
+      setTimeout(() => {
+        if (elements.modal.style.display === "flex") {
+          closeModal();
+        }
+      }, 5000);
+    });
+  }
+
+  if (elements.hamburger) {
+    elements.hamburger.onclick = (e) => {
+      e.stopPropagation();
+      elements.navLinks.classList.toggle("active");
+      elements.hamburger.classList.toggle("is-active");
+    };
+  }
 
   /**
    * FEATURE: VIN DECODER
@@ -105,40 +142,15 @@ document.addEventListener("DOMContentLoaded", () => {
           results.find((r) => r.VariableId === id)?.Value || "N/A";
 
         elements.vinResult.innerHTML = `
-                    <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                        <strong>Vehicle:</strong> ${getVal(143)} ${getVal(434)} ${getVal(28)}<br>
-                        <strong>Engine:</strong> ${getVal(9)} ${getVal(11)}L<br>
-                        <strong>Assembled in:</strong> ${getVal(31)}
+                    <div class="vin-details">
+                        <h4>Vehicle Specifications</h4>
+                        <p><strong>Vehicle:</strong> ${getVal(143)} ${getVal(434)} ${getVal(28)}</p>
+                        <p><strong>Engine:</strong> ${getVal(9)} ${getVal(11)}L</p>
+                        <p><strong>Assembled in:</strong> ${getVal(31)}</p>
                     </div>`;
       } catch (e) {
-        elements.vinResult.innerHTML = "Error retrieving data.";
+        elements.vinResult.innerHTML = '<div class="error">Error retrieving data.</div>';
       }
-    };
-  }
-
-  /**
-   * UI: MODAL & NAV
-   */
-  const toggleModal = (show) =>
-    (elements.modal.style.display = show ? "flex" : "none");
-
-  document.addEventListener("click", (e) => {
-    if (
-      e.target.id === "contactBtn" ||
-      e.target.innerText.includes("Inquire") ||
-      e.target.innerText.includes("Work") ||
-      e.target.innerText.includes("Lock In")
-    ) {
-      toggleModal(true);
-    }
-    if (e.target.classList.contains("close-btn")) toggleModal(false);
-  });
-
-  if (elements.hamburger) {
-    elements.hamburger.onclick = (e) => {
-      e.stopPropagation();
-      elements.navLinks.classList.toggle("active");
-      elements.hamburger.classList.toggle("is-active");
     };
   }
 
@@ -147,11 +159,18 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   async function updateFleet() {
     const brand = elements.brandInput.value || "Ford";
+    if (elements.grid) elements.grid.innerHTML = '<div class="loading">Searching Santi\'s Vault...</div>';
+    
     try {
       const res = await fetch(
         `https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${brand}?format=json`,
       );
       const data = await res.json();
+
+      if (!data.Results || data.Results.length === 0) {
+        elements.grid.innerHTML = '<div class="error">No vehicles found for this brand.</div>';
+        return;
+      }
 
       carFleet = data.Results.slice(0, 12).map((car) => ({
         name: `${car.Make_Name} ${car.Model_Name}`,
@@ -160,11 +179,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }));
       renderUI();
     } catch (e) {
-      console.error("API Error");
+      console.error("API Error", e);
+      if (elements.grid) elements.grid.innerHTML = '<div class="error">Could not load inventory. Please try again.</div>';
     }
   }
 
   function renderUI() {
+    if (!elements.grid) return;
     const maxPrice = parseInt(elements.priceSlider.value);
     elements.priceVal.textContent = `$${maxPrice}`;
 
@@ -173,6 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
       filtered.sort((a, b) => a.price - b.price);
     if (elements.sort.value === "high")
       filtered.sort((a, b) => b.price - a.price);
+
+    if (filtered.length === 0) {
+      elements.grid.innerHTML = '<div class="error">No vehicles match your price filter.</div>';
+      return;
+    }
 
     elements.grid.innerHTML = filtered
       .map(
@@ -184,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="price">$${car.price}/wk</span>
                     <h3>${car.name}</h3>
                     <div class="card-actions">
-                        <button class="btn btn-primary">Inquire</button>
+                        <button class="btn btn-primary inquire-btn">Inquire</button>
                         <button class="btn btn-share" onclick="shareVehicle('${car.name}', '${car.price}')">📤</button>
                         <button class="btn btn-alert" onclick="subscribePriceDrop('${car.name}')">🔔</button>
                     </div>

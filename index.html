@@ -92,7 +92,7 @@
                 <h4>Estimated Monthly Payment</h4>
                 <div class="payment-amount" id="monthlyPayment">$0.00</div>
                 <p class="small">Total Interest: <span id="totalInterest">$0.00</span></p>
-                <button class="btn btn-primary" style="width:100%; margin-top: 20px;" onclick="window.location.href='#contactModal'">Lock In This Rate</button>
+                <button class="btn btn-primary" style="width:100%; margin-top: 20px;" id="lockRateBtn">Lock In This Rate</button>
             </div>
         </div>
     </div>
@@ -128,9 +128,9 @@
                 </div>
             </div>
 
-            <p>As a consistent top salesman at Shottenkirk, Richard's success doesn't come from "selling" cars, but from helping people. Whether you’re looking for a reliable family SUV or a first-time commuter, Richard treats every customer like family, ensuring you drive away with exactly what you need at a price that respects your budget.</p>
+            <p>As a consistent top salesman at Shottenkirk, Santi's success doesn't come from "selling" cars, but from helping people. Whether you’re looking for a reliable family SUV or a first-time commuter, "Santi" treats every customer like family, ensuring you drive away with exactly what you need at a price that respects your budget.</p>
             
-            <a href="#contactModal" class="btn btn-primary">Work With Richard</a>
+            <button class="btn btn-primary" id="workWithRichardBtn">Work With Santi</button>
         </div>
     </div>
 </section>
@@ -140,13 +140,13 @@
         <div class="section-header">
             <span class="badge">Success Stories</span>
             <h2>What Quincy is Saying</h2>
-            <p>Real experiences from people who found their perfect ride with Richard.</p>
+            <p>Real experiences from people who found their perfect ride with "Santi".</p>
         </div>
 
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"As a fellow QU alum, I knew I wanted to work with Richard. He treated my family like his own and found us a Traverse that fit our budget perfectly. No games, just great service."</p>
+                <p>"As a fellow QU alum, I knew I wanted to work with "Santi". He treated my family like his own and found us a Traverse that fit our budget perfectly. No games, just great service."</p>
                 <div class="client-info">
                     <strong>— Sarah M., Quincy IL</strong>
                 </div>
@@ -162,7 +162,7 @@
 
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p>"Best car buying experience ever. Being a father himself, Richard knew exactly what safety features I needed for my kids. I won't go anywhere else but Shottenkirk now."</p>
+                <p>"Best car buying experience ever. Being a father himself, "Santi" knew exactly what safety features I needed for my kids. I won't go anywhere else but Shottenkirk now."</p>
                 <div class="client-info">
                     <strong>— Jessica L., Quincy IL</strong>
                 </div>
@@ -200,24 +200,27 @@
             <p>&copy; 2026 Richard Santiago - Shottenkirk Quincy. All Rights Reserved.</p>
         </div>
     </footer>
+
 <div id="contactModal" class="modal">
     <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <div class="modal-header">
-            <h3>Priority Inquiry</h3>
-            <p>Direct to Santi's Desk</p>
-        </div>
-        <form id="contactForm">
-            <label>Name</label>
-            <input type="text" placeholder="e.g. John Doe" required>
-            
-            <label>Email Address</label>
-            <input type="email" placeholder="john@example.com" required>
-            
-            <label>Preferred Vehicle / Question</label>
-            <textarea placeholder="Tell Richard what you're looking for..." rows="4"></textarea>
-            
-            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+        
+        <div id="formContainer">
+            <div class="modal-header">
+                <h3>Priority Inquiry</h3>
+                <p>Direct to Santi's Desk</p>
+            </div>
+            <form id="contactForm">
+                <label for="formName">Name</label>
+                <input type="text" id="formName" placeholder="e.g. John Doe" required>
+                
+                <label for="formEmail">Email Address</label>
+                <input type="email" id="formEmail" placeholder="john@example.com" required>
+                
+                <label for="formQuestion">Preferred Vehicle / Question</label>
+                <textarea id="formQuestion" placeholder="Tell Richard what you're looking for..." rows="4"></textarea>
+                
+                <button type="submit" class="btn btn-primary">Send Inquiry</button>
             </form>
         </div>
 
@@ -225,7 +228,7 @@
             <div class="success-icon">✓</div>
             <h3>Message Received!</h3>
             <p>Thanks, <span id="userNameDisplay">Partner</span>! Richard has been notified and will reach out to you shortly.</p>
-            <button class="btn btn-primary" onclick="closeModal()">Got it</button>
+            <button class="btn btn-primary" id="successCloseBtn">Got it</button>
         </div>
     </div>
 </div>

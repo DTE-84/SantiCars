@@ -1,6 +1,6 @@
 /* 1. VARIABLES & RESET */
 :root {
-    --primary: #f43303;    /* Shottenkirk Red */
+    --primary: #AE0315;    /* Shottenkirk Red */
     --dark: #121212;       /* Sleek Black */
     --light-gray: #f8f9fa;
     --text: #333;
@@ -36,7 +36,7 @@ main { min-height: 80vh; }
 }
 
 .btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { background: #d02a02; transform: translateY(-2px); }
+.btn-primary:hover { background: #8e0211; transform: translateY(-2px); }
 .btn-white { background: white; color: var(--dark); }
 
 .btn-share, .btn-alert {
@@ -129,7 +129,19 @@ section { padding: 80px 0; }
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
+    min-height: 400px;
 }
+
+.loading, .error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 100px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.error { color: var(--primary); }
 
 .card {
     background: white;
@@ -464,4 +476,35 @@ section { padding: 80px 0; }
     color: var(--dark);
     border-top: 1px solid #eee;
     padding-top: 15px;
+}
+
+/* --- VIN DECODER STYLING --- */
+.result-box {
+    margin-top: 20px;
+    min-height: 50px;
+}
+
+.vin-details {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    animation: fadeIn 0.3s ease;
+    text-align: left;
+}
+
+.vin-details h4 {
+    margin: 0 0 10px;
+    color: var(--dark);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.vin-details p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+.vin-details strong {
+    color: var(--dark);
 }
