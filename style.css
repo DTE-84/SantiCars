@@ -1,7 +1,7 @@
 /* 1. VARIABLES & RESET */
 :root {
     --primary: #AE0315;    /* Santi Red */
-    --steel: #4682B4;      /* Steel Blue/Gray */
+    --silver: #C0C0C0;     /* Polished Silver */
     --black: #0a0a0a;      /* Deep Black */
     --whitesmoke: #f5f5f5; /* Off-white */
     --text: #333;
@@ -58,13 +58,13 @@ main { min-height: 80vh; }
     box-shadow: 0 10px 20px rgba(174, 3, 21, 0.3);
 }
 
-.btn-steel {
-    background: var(--steel);
-    color: white;
-    border-bottom: 3px solid #36648B;
+.btn-silver {
+    background: var(--silver);
+    color: var(--black);
+    border-bottom: 3px solid #A9A9A9;
 }
-.btn-steel:hover {
-    background: #36648B;
+.btn-silver:hover {
+    background: #A9A9A9;
     transform: translateY(-2px);
 }
 
@@ -219,12 +219,17 @@ input:hover, select:hover, textarea:hover {
     background-color: #fff;
 }
 
-input:focus, select:focus, textarea:focus {
+select:focus {
     outline: none;
     border-color: var(--primary);
     background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(174, 3, 21, 0.15), inset 0 2px 4px rgba(0,0,0,0.02);
-    transform: translateY(-1px);
+    box-shadow: 0 0 0 4px rgba(174, 3, 21, 0.15);
+}
+
+/* Note: Styling native <option> hover/selection is limited across browsers, 
+   but we can style the select focus and hover states for consistency */
+select:hover {
+    border-color: var(--primary);
 }
 
 .input-group {
@@ -347,7 +352,7 @@ section { padding: 100px 0; }
 .card:hover { 
     transform: translateY(-12px); 
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border-color: var(--steel);
+    border-color: var(--silver);
 }
 
 .card-badge {
@@ -496,7 +501,7 @@ section { padding: 100px 0; }
     position: absolute;
     top: 15px;
     right: 20px;
-    color: white;
+    color: var(--black);
     font-size: 2rem;
     cursor: pointer;
     z-index: 10;
@@ -549,6 +554,51 @@ section { padding: 100px 0; }
 .social-icon:hover {
     color: var(--primary);
     transform: translateY(-5px);
+}
+
+/* --- CALL BUTTONS & FAB --- */
+.nav-call-btn {
+    font-size: 0.8rem;
+    padding: 10px 20px;
+}
+
+.fab-call {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.103);
+    z-index: 999;
+    font-weight: 700;
+    transition: var(--transition);
+    border: 2px solid rgba(0, 0, 0, 0.212);
+}
+
+.fab-call:hover {
+    transform: scale(1.05) translateY(-5px);
+    background: #8e0211;
+}
+
+.fab-call i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .nav-call-btn { display: none; } /* Hide in mobile menu to save space */
+    .fab-call span { display: none; } /* Show only icon on small mobile */
+    .fab-call { 
+        padding: 15px; 
+        bottom: 20px; 
+        right: 20px; 
+        border-radius: 50%; 
+    }
 }
 
 /* 8. MOBILE RESPONSIVENESS (The Fix) */
